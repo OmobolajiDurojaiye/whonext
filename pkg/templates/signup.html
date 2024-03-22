@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='style/login.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='vendor/bootstrap/css/bootstrap.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{url_for('static', filename='style/animate.min.css')}}">
+    <title>Sign up | Who's Next?</title>
+</head>
+<body>
+    
+    <div class="flash">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <div class="main">
+
+        <form id="signupForm" action="" method="post" onsubmit="return validateForm()">
+            <h4>
+                Sign Up
+            </h4>
+
+            <p style="color: red !important; font-size: 0.7em;" id="customererror"></p>
+
+            <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+    
+            <div class="form-v mb-3">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="bassey">
+            </div>
+
+            <div class="form-v mb-3">
+                <label for="pwd">Password</label>
+                <input type="password" class="form-control" id="pwd" name="pwd" placeholder="*******">
+            </div>
+    
+            <div class="submit">
+                <button type="submit" id="customersubmit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="{{url_for('static', filename='vendor/script/jquery.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.js')}}"></script>
+
+    <script>
+        function validateForm() {
+            var username = document.getElementById("username").value.trim();
+            var password = document.getElementById("pwd").value.trim();
+            var error = document.getElementById("customererror");
+
+            if (username === "" || password === "") {
+                error.innerHTML = "Username and password cannot be empty.";
+                return false;
+            }
+
+            return true;
+        }
+    </script>    
+</body>
+</html>

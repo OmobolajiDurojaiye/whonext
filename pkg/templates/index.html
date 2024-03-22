@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='style/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='vendor/bootstrap/css/bootstrap.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{url_for('static', filename='style/animate.min.css')}}">
+    <title>Who's Next?</title>
+</head>
+<body>
+    
+    <div class="logout">
+        <a href="/logout">Logout</a>
+    </div>
+    <div class="main">
+        <button>
+            &#127804;
+        </button>
+
+        <button>
+            &#128508;
+        </button>
+
+        <button>
+            &#128516;
+        </button>
+
+        <button>
+            &#128021;
+        </button>
+
+        <button>
+            &#128030;
+        </button>
+
+        <button>
+            &#128040;
+        </button>
+
+        <button>
+            &#128205;
+        </button>
+
+        <button>
+            &#128219;
+        </button>
+
+        <button>
+            &#128510;
+        </button>
+
+        <button>
+            &#128516;
+        </button>
+    </div>
+
+    <!-- Alert box -->
+    <div id="alertBox" class="alert-box">
+        <div id="alertMessage" class="alert-message"></div>
+    </div>
+
+    <script src="{{url_for('static', filename='vendor/script/jquery.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.js')}}"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.main button').click(function () {
+                var buttons = $('.main button');
+                var button = $(this);
+                $.get('/generate_number', function (data) {
+                    if (data === "All numbers have been picked" || data === "You have already won this month!") {
+                        showAlert(data);
+                        return;
+                    }
+
+                    var randomNumber = parseInt(data);
+                    if (!isNaN(randomNumber)) {
+                        var buttonText = button.text();
+                        console.log("Parsed random number:", randomNumber);
+                        showAlert(`You clicked ${buttonText}. Your random number is ${randomNumber}`);
+                        if (randomNumber === 1) {
+                            showAlert('Congratulations! You won!');
+                        }
+                        buttons.prop('disabled', true);
+                    } else {
+                        showAlert(data);
+                    }
+                });
+            });
+        });
+
+        function showAlert(message) {
+            $('#alertMessage').text(message);
+            $('#alertBox').addClass('animate__animated animate__fadeIn').show();
+            setTimeout(function() {
+                $('#alertBox').removeClass('animate__animated animate__fadeIn').hide();
+            }, 3000);
+        }
+    </script>   
+</body>
+</html>

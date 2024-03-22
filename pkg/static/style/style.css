@@ -1,0 +1,120 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none !important;
+    color: #131313 !important;
+}
+
+body {
+    background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logout {
+    height: max-content;
+    padding: 10px;
+    /* border: 1px solid #131313; */
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    border-radius: 10px;
+    position: relative;
+    bottom: 5vh;
+}
+
+.main {
+    width: max-content;
+    padding: 20px;
+    height: max-content;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.main button {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.main button:hover {
+    transform: scale(1.05);
+}
+
+#alertBox {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 9999;
+}
+
+.animate__animated.animate__fadeIn {
+    animation-duration: 1s;
+}
+
+.alert-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 9999;
+}
+
+.alert-message {
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+}
+
+
+@media screen and (max-width: 768px) {
+    body {
+        padding: 20px;
+    }
+    .logout {
+        width: 100%;
+        text-align: center;
+    }
+    .main {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+    .main button {
+        width: 80px;
+        height: 80px;
+        font-size: 18px;
+    }
+}
